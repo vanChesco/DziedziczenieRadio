@@ -1,5 +1,9 @@
 ﻿#include <iostream>
 
+// Powino byc troche inaczej. Dziedziczenie stosuje sie, gdy klasa dziedziczaca, to odmiana klasy glownej na zasadzie samochod -> marka -> model
+// w przypadku elementow skladowych po prostu korzysta sie w ciele klasy z obiektow wczesniej zdefiniowanej innej klasy bez dziedziczenia.
+// 
+
 class rezystor
 {
 protected:
@@ -50,15 +54,15 @@ public:
 	}
 };
 
-class zasilacz : public rezystor
+class zasilacz : public rezystor, public kondensator, public cewka
 {
 public:
 	float napiecie = 0;
-	cewka ceweczka;
 
-	zasilacz(float U = 0) : napiecie(U), rezystor(470)
+	
+	zasilacz(float U = 0) : napiecie(U), rezystor(470), cewka(60), kondensator(220)
 	{
-		std::cout << "Konstruktor zasilacza " << U << " V " << "pobierajacego prad o natezeniu " << U / r << " A\n" << "Uzyto tez cewki o imp. " << ceweczka.L << '\n';
+		std::cout << "Konstruktor zasilacza " << U << " V " << "pobierajacego prad o natezeniu " << U / r << " A\n" << "Uzyto tez cewki o imp. " << L << '\n';
 	}
 	~zasilacz()
 	{
