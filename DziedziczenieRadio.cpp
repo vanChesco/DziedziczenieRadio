@@ -19,6 +19,11 @@ public:
 	{
 		std::cout << "Destruktor rezystora " << r << "Ohm\n";
 	}
+
+	void virtual funkcja()
+	{
+		std::cout << "Wlasnie stawiam opor pradowi\n";
+	}
 };
 
 class kondensator
@@ -36,6 +41,11 @@ public:
 	{
 		std::cout << "Destruktor kondensatora " << c << " uF\n";
 	}
+
+	void funkcja()
+	{
+		std::cout << "Wlasnie gromadze ladunek\n";
+	}
 };
 
 class cewka
@@ -51,6 +61,11 @@ public:
 	~cewka()
 	{
 		std::cout << "Dekonstruktor cewki " << L << "uT\n";
+	}
+
+	void funkcja()
+	{
+		std::cout << "Wlasnie transformuje prad na pole magnetyczne\n";
 	}
 };
 
@@ -68,6 +83,11 @@ public:
 	{
 		std::cout << "Dekonstruktor zasilacza " << napiecie << "V\n";
 	}
+
+	void funkcja()
+	{
+		std::cout << "Wlasnie wytwarzam zasilanie\n";
+	}
 };
 
 class radio : public zasilacz
@@ -82,10 +102,24 @@ public:
 		std::cout << "Tworze radio z zasilaczem o wydajnosci " << zasilacz::napiecie / r << ", model: " << marka << ", na czest.: " << uhf << " MHz\n";
 	}
 
+	void funkcja()
+	{
+		std::cout << "Wlasnie demoduluje FM na dzwiek\n";
+	}
+
 };
 
 int main()
 {
+	rezystor R{ 23 };
+	kondensator C{ 110 };
+	cewka L{ 40 };
 	radio Grundig("Grundig", 99.7f);
+	rezystor* wsk;
+
+	wsk = &Grundig;
+
+	wsk->funkcja();
+
 	return 0;
 }
